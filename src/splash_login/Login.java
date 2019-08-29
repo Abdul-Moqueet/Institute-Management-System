@@ -131,6 +131,7 @@ public class Login implements Initializable {
 
         } catch (Exception ex) {
             MyAlert.errorAlert(ex.toString());
+            ex.printStackTrace();
         }
 
     }
