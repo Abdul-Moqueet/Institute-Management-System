@@ -16,6 +16,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import my_alert.MyAlert;
 import my_utils.MyAnimations;
+import my_utils.MyDatabase;
+import my_utils.MyUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,7 +36,7 @@ import static my_utils.MyUtils.*;
 public class TakeAdmission implements Initializable {
 
     @FXML
-    private Pane pane, pane_name, pane_phone_no, pane_f_name, pane_address;
+    private Pane pane, pane_name, pane_phone_no, pane_f_name, pane_address, mainPane;
 
     @FXML
     private ImageView btn_save, btn_clear_all, btn_refresh, img_v_pic;
@@ -51,7 +53,7 @@ public class TakeAdmission implements Initializable {
     @FXML
     private Button btn_browse;
 
-    private String picName = "default";
+    private String picName = "default_avatar.png";
 
     private int[] rate = {2000, 2500, 3000, 5000, 3500};
 
@@ -211,8 +213,18 @@ public class TakeAdmission implements Initializable {
 
             if(checkPhoneNo(tf_phone_no.getText(), lb_phone_no_error, pane_phone_no)){
 
-                if (picName.matches(""))
-                    picName = "default";
+                if (picName.trim().isEmpty())
+                    picName = "default_avatar.png";
+
+                StudentModal studentModal = new StudentModal(0, tf_name.getText(), cb_class.getValue(), cb_gender.getValue(),
+                                tf_f_name.getText(), tf_phone_no.getText(), tf_date_of_admission.getText(),
+                                cb_batch.getValue(), cb_course.getValue(), tf_address.getText(),
+                                Integer.parseInt(tf_total_fee.getText()), Integer.parseInt(tf_dues.getText()),
+                                Integer.parseInt(tf_pay.getText()), tf_date_of_admission.getText(), picName);
+
+                if(MyDatabase.saveAdmission(studentModal)){
+                    MyUtils.showSnackbar(mainPane, "Record Added Successfully", 3);
+                }
 
             }
 

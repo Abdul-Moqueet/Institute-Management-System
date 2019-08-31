@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="710.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="take_admission.TakeAdmission">
     <children>
-        <AnchorPane prefHeight="710.0" prefWidth="1066.0" styleClass="anchor" stylesheets="@style.css">
+        <Pane fx:id="mainPane" prefHeight="710.0" prefWidth="1066.0" styleClass="anchor" stylesheets="@style.css">
             <children>
                 <Pane fx:id="pane" layoutX="110.0" layoutY="93.0" prefHeight="550.0" prefWidth="833.0" styleClass="pane">
                     <children>
@@ -114,7 +114,7 @@
                     </children>
                 </Pane>
             </children>
-        </AnchorPane>
+        </Pane>
         <Pane prefHeight="35.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
             <children>
                 <Label layoutX="445.0" layoutY="-1.0" text="Take Admission" textFill="WHITE">

@@ -32,6 +32,7 @@ public class MyAnimations {
         rt.play();
     }
 
+
     public static void shake(Node node, double sec, double start, double end, int cycle, CallBack callBack){
         TranslateTransition tt = new TranslateTransition(Duration.seconds(sec), node);
         tt.setFromX(start);

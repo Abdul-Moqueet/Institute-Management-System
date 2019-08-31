@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import my_alert.ConfirmAlert;
 import my_alert.MyAlert;
 import my_utils.MyAnimations;
+import my_utils.MyDatabase;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -51,6 +52,8 @@ public class Login implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        MyDatabase.connectToDataBase();
 
         MyAnimations.fade(anchor_login, 3, 0, 1, null);
         clock();
