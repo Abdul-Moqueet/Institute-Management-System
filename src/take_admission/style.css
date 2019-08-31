@@ -1,0 +1,7 @@
+.anchor {
+    -fx-background-image: url("take_admission.jpg");
+}
+
+.pane {
+    -fx-background-image: url("pane_bg.png");
+}

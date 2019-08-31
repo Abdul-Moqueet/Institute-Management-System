@@ -12,14 +12,18 @@ import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyUtils {
+
     public static boolean isNotEmpty(TextField tf, Label lb, Pane pane){
 
-        if(tf.getText().matches("")){
+        if(tf.getText().trim().isEmpty()){
             lb.setText("can't be empty");
             lb.setStyle("-fx-opacity: 1");
             MyAnimations.shake(pane, 0.08, 0, 10, 6, null);
+            tf.requestFocus();
             return false;
         }
         lb.setStyle("-fx-opacity: 0");
@@ -40,6 +44,23 @@ public class MyUtils {
 
     }
 
+    public static boolean checkPhoneNo(String s, Label lb, Pane pane) {
+
+        Pattern p = Pattern.compile("(0|91)?[0-9]{10}");
+        Matcher m = p.matcher(s);
+
+        if(!(m.find() && m.group().equals(s))){
+            lb.setText("Invalid Phone No.");
+            lb.setStyle("-fx-opacity: 1");
+            MyAnimations.shake(pane, 0.08, 0, 10, 6, null);
+            return false;
+        }
+        lb.setStyle("-fx-opacity: 0");
+        lb.setText("can't be empty");
+        return true;
+
+    }
+
     public static void showSnackbar(Pane pane, String msg, int sec) {
 
         JFXSnackbar snackbar = new JFXSnackbar(pane);
@@ -52,6 +73,14 @@ public class MyUtils {
         label.setAlignment(Pos.CENTER);
 
         snackbar.enqueue(new JFXSnackbar.SnackbarEvent(label, Duration.seconds(sec)));
+    }
+
+    public static void setNumberOnly(TextField textField){
+
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) textField.setText(newValue.replaceAll("[^\\d]", ""));
+        });
+
     }
 
     public static void dateConverter(JFXDatePicker dp) {

@@ -67,13 +67,13 @@ public class NavigationStage implements Initializable {
         setOnMouseEnteredExited(nav_btn_signOut, hover_signOut);
         setOnMouseEnteredExited(nav_btn_settings, hover_settings);
 
-//        setChildInBorderPane(0,"/dash_board/dash_board.fxml");
+        setChildInBorderPane(0,"/dash_board/dash_board.fxml");
 
-//        nav_btn_dash_board.setOnMouseClicked(e->
-//                setChildInBorderPane(0,"/dash_board/dash_board.fxml"));
-//
-//        nav_btn_take_admission.setOnMouseClicked(e->
-//            setChildInBorderPane(1,"/take_admission/take_admission.fxml"));
+        nav_btn_dash_board.setOnMouseClicked(e->
+                setChildInBorderPane(0,"/dash_board/dash_board.fxml"));
+
+        nav_btn_take_admission.setOnMouseClicked(e->
+            setChildInBorderPane(1,"/take_admission/take_admission.fxml"));
 //
 //        nav_btn_student_info.setOnMouseClicked(e ->
 //                setChildInBorderPane(2, "/student_info/student_info.fxml"));
