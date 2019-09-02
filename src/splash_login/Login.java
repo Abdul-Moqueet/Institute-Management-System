@@ -133,7 +133,7 @@ public class Login implements Initializable {
             currentStage.close();
 
         } catch (Exception ex) {
-            MyAlert.errorAlert(ex.toString());
+            MyAlert.errorAlert(ex);
             ex.printStackTrace();
         }
 

@@ -74,12 +74,12 @@ public class NavigationStage implements Initializable {
 
         nav_btn_take_admission.setOnMouseClicked(e->
             setChildInBorderPane(1,"/take_admission/take_admission.fxml"));
-//
-//        nav_btn_student_info.setOnMouseClicked(e ->
-//                setChildInBorderPane(2, "/student_info/student_info.fxml"));
-//
-//        nav_btn_payment.setOnMouseClicked(e->
-//                setChildInBorderPane(3, "/payment/payment.fxml"));
+
+        nav_btn_student_info.setOnMouseClicked(e ->
+                setChildInBorderPane(2, "/student_info/student_info.fxml"));
+
+        nav_btn_payment.setOnMouseClicked(e->
+                setChildInBorderPane(3, "/payment_info/payment_info.fxml"));
     }
 
     private void setChildInBorderPane(int i, String fxml){
@@ -91,7 +91,7 @@ public class NavigationStage implements Initializable {
             border_pane.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             e.printStackTrace();
-            MyAlert.errorAlert(e.toString());
+            MyAlert.errorAlert(e);
         }
         activeNav();
 

@@ -4,30 +4,30 @@ public class StudentModal {
 
     private int id;
 
-    private String name, sClass, gender, fName, phone, doa, batch, course, address;
+    private String name, s_class, gender, f_name, phone, doa, batch, course, address;
 
-    private int totalFee, dues, paid;
+    private int total_fee, dues, paid;
 
-    private String payDate, pic;
+    private String pay_date, pic;
 
-
-    public StudentModal(int id, String name, String sClass, String gender, String fName, String phone, String doa, String batch, String course, String address, int totalFee, int dues, int paid, String payDate, String pic) {
+    public StudentModal(int id, String name, String s_class, String gender, String f_name, String phone, String doa, String batch, String course, String address, int total_fee, int dues, int paid, String pay_date, String pic) {
         this.id = id;
         this.name = name;
-        this.sClass = sClass;
+        this.s_class = s_class;
         this.gender = gender;
-        this.fName = fName;
+        this.f_name = f_name;
         this.phone = phone;
         this.doa = doa;
         this.batch = batch;
         this.course = course;
         this.address = address;
-        this.totalFee = totalFee;
+        this.total_fee = total_fee;
         this.dues = dues;
         this.paid = paid;
-        this.payDate = payDate;
+        this.pay_date = pay_date;
         this.pic = pic;
     }
+
 
     public int getId() {
         return id;
@@ -45,12 +45,12 @@ public class StudentModal {
         this.name = name;
     }
 
-    public String getsClass() {
-        return sClass;
+    public String getS_class() {
+        return s_class;
     }
 
-    public void setsClass(String sClass) {
-        this.sClass = sClass;
+    public void setS_class(String s_class) {
+        this.s_class = s_class;
     }
 
     public String getGender() {
@@ -61,12 +61,12 @@ public class StudentModal {
         this.gender = gender;
     }
 
-    public String getfName() {
-        return fName;
+    public String getF_name() {
+        return f_name;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setF_name(String f_name) {
+        this.f_name = f_name;
     }
 
     public String getPhone() {
@@ -109,12 +109,12 @@ public class StudentModal {
         this.address = address;
     }
 
-    public int getTotalFee() {
-        return totalFee;
+    public int getTotal_fee() {
+        return total_fee;
     }
 
-    public void setTotalFee(int totalFee) {
-        this.totalFee = totalFee;
+    public void setTotal_fee(int total_fee) {
+        this.total_fee = total_fee;
     }
 
     public int getDues() {
@@ -133,12 +133,12 @@ public class StudentModal {
         this.paid = paid;
     }
 
-    public String getPayDate() {
-        return payDate;
+    public String getPay_date() {
+        return pay_date;
     }
 
-    public void setPayDate(String payDate) {
-        this.payDate = payDate;
+    public void setPay_date(String pay_date) {
+        this.pay_date = pay_date;
     }
 
     public String getPic() {

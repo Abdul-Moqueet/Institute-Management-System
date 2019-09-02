@@ -14,11 +14,12 @@ import my_utils.CallBack;
 
 public class MyAlert {
 
-    public static void errorAlert(String msg) {
+    public static void errorAlert(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText(null);
-        alert.setContentText(msg);
+        alert.setContentText(e.toString());
+        e.printStackTrace();
         alert.showAndWait();
     }
 
@@ -78,7 +79,7 @@ public class MyAlert {
             return fxmlLoader;
 
         } catch (Exception ex) {
-            MyAlert.errorAlert(ex.toString());
+            MyAlert.errorAlert(ex);
         }
         return null;
     }

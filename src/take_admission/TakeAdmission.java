@@ -81,7 +81,7 @@ public class TakeAdmission implements Initializable {
         cb_course.getItems().addAll("C-Language", "C++", "Java", "JavaScript", "Python");
         cb_course.setValue(cb_course.getItems().get(0));
 
-        cb_batch.getItems().addAll("08:00AM - 10:00AM", "11:00AM - 01:00PM", "04:00PM : 06:00PM");
+        cb_batch.getItems().addAll("08:00 AM", "11:00 AM", "04:00 PM");
         cb_batch.setValue(cb_batch.getItems().get(0));
 
         tf_total_fee.setText("2000");
@@ -179,7 +179,7 @@ public class TakeAdmission implements Initializable {
                 imageView.setImage(new Image(new FileInputStream(picName)));
                 return picName;
             } catch (FileNotFoundException ex) {
-                MyAlert.errorAlert(ex.toString());
+                MyAlert.errorAlert(ex);
             }
 
         }
@@ -192,11 +192,16 @@ public class TakeAdmission implements Initializable {
             if (selectedFile != null) {
                 Path from = Paths.get(selectedFile.toURI());
                 Path to = Paths.get(picName);
-                Files.copy(from, to.resolve(from), StandardCopyOption.REPLACE_EXISTING);
+                try {
+                    Files.copy(from, to.resolve(from), StandardCopyOption.REPLACE_EXISTING);
+                }catch (Exception ex){
+                    Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+                }
+
                 return true;
             }
         } catch (Exception e) {
-            MyAlert.errorAlert(e.toString());
+            MyAlert.errorAlert(e);
         }
         return false;
     }
