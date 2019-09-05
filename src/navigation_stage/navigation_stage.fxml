@@ -70,7 +70,7 @@
                      </font>
                   </Label>
                   <Pane fx:id="hover_settings" layoutY="495.0" prefHeight="40.0" prefWidth="10.0" style="-fx-background-color: #8b22cc;" />
-                  <Label fx:id="nav_btn_settings" alignment="CENTER" layoutY="495.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: rgba(128,128,128,0.20);" text="Settings" textAlignment="CENTER">
+                  <Label fx:id="nav_btn_setting" alignment="CENTER" layoutY="495.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: rgba(128,128,128,0.20);" text="Settings" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>

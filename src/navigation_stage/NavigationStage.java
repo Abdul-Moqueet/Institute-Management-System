@@ -34,7 +34,7 @@ public class NavigationStage implements Initializable {
 
     @FXML
     private Label nav_btn_dash_board, nav_btn_take_admission, nav_btn_student_info, nav_btn_payment,
-            nav_btn_signOut, nav_btn_settings;
+            nav_btn_signOut, nav_btn_setting;
 
     private Timeline timeline;
     private int selected = 0, i = 0;
@@ -65,7 +65,7 @@ public class NavigationStage implements Initializable {
         setOnMouseEnteredExited(nav_btn_student_info, hover_student_info);
         setOnMouseEnteredExited(nav_btn_payment, hover_payment);
         setOnMouseEnteredExited(nav_btn_signOut, hover_signOut);
-        setOnMouseEnteredExited(nav_btn_settings, hover_settings);
+        setOnMouseEnteredExited(nav_btn_setting, hover_settings);
 
         setChildInBorderPane(0,"/dash_board/dash_board.fxml");
 
@@ -80,6 +80,10 @@ public class NavigationStage implements Initializable {
 
         nav_btn_payment.setOnMouseClicked(e->
                 setChildInBorderPane(3, "/payment_info/payment_info.fxml"));
+
+        nav_btn_setting.setOnMouseClicked(e->
+                setChildInBorderPane(4, "/setting/setting.fxml"));
+
     }
 
     private void setChildInBorderPane(int i, String fxml){
@@ -149,11 +153,11 @@ public class NavigationStage implements Initializable {
                 break;
 
             case 4:
-                hover_signOut.setStyle("-fx-background-color: #1dcc49");
+                hover_settings.setStyle("-fx-background-color: #1dcc49");
                 break;
 
             case 5:
-                hover_settings.setStyle("-fx-background-color: #1dcc49");
+                hover_signOut.setStyle("-fx-background-color: #1dcc49");
                 break;
         }
 

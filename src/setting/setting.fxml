@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="setting_pane" prefHeight="710.0" prefWidth="1066.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setting.Setting">
+    <children>
+        <Pane prefHeight="35.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
+            <children>
+                <Label layoutX="433.0" layoutY="-2.0" text="Change Password" textFill="WHITE">
+                    <font>
+                        <Font name="Courgette Regular" size="26.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+      <Pane fx:id="pane" layoutX="168.0" layoutY="162.0" prefHeight="387.0" prefWidth="730.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow color="#0000008b" />
+         </effect>
+         <children>
+            <Pane fx:id="pane_current_password" layoutX="266.0" layoutY="70.0">
+               <children>
+                  <JFXTextField fx:id="tf_current_password" focusColor="#8b22cc" prefHeight="25.0" prefWidth="199.0" promptText="Current Password" />
+                  <Label fx:id="lb_current_password_error" layoutX="108.0" layoutY="29.0" opacity="0.0" text="Can't be empty" textFill="RED" />
+               </children>
+            </Pane>
+            <Pane fx:id="pane_new_password" layoutX="266.0" layoutY="150.0">
+               <children>
+                  <JFXTextField fx:id="tf_new_password" focusColor="#8b22cc" prefHeight="25.0" prefWidth="199.0" promptText="New Password" />
+                  <Label fx:id="lb_new_password_error" layoutX="108.0" layoutY="29.0" opacity="0.0" text="Can't be empty" textFill="RED" />
+               </children>
+            </Pane>
+            <Pane fx:id="pane_confrim_password" layoutX="266.0" layoutY="230.0">
+               <children>
+                  <JFXTextField fx:id="tf_confirm_password" focusColor="#8b22cc" prefHeight="25.0" prefWidth="199.0" promptText="Confirm Password" />
+                  <Label fx:id="lb_confirm_password_error" layoutX="111.0" layoutY="29.0" opacity="0.0" text="Can't be empty" textFill="RED" />
+               </children>
+            </Pane>
+            <JFXButton fx:id="btn_save_chnages" buttonType="RAISED" layoutX="375.0" layoutY="310.0" style="-fx-background-color: #8B22CC;" text="Save Changes" textFill="WHITE" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
