@@ -1,21 +1,24 @@
 package navigation_stage;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import my_alert.MyAlert;
 import my_utils.CallBack;
 import my_utils.MyAnimations;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,24 +33,22 @@ public class NavigationStage implements Initializable {
             hover_signOut, hover_settings;
 
     @FXML
-    private ImageView btn_back, btn_nav_menu, nav_bg_img;
+    private ImageView  btn_nav_menu, img_stack, img_github, img_linked_in, img_portfolio;
 
     @FXML
     private Label nav_btn_dash_board, nav_btn_take_admission, nav_btn_student_info, nav_btn_payment,
             nav_btn_signOut, nav_btn_setting;
 
-    private Timeline timeline;
-    private int selected = 0, i = 0;
-    private boolean isAnimating=true;
+    private int selected = 0;
+    private boolean isAnimating=true, isOpen = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         nav_pane.setTranslateX(-300);
         activeNav();
-        navBgImgAnimation();
 
-        MyAnimations.delayUiThread(1, new CallBack() {
+        MyAnimations.delayUiThread(2, new CallBack() {
             @Override
             public void execute() {
                 MyAnimations.move(nav_pane, 0.3, -300, 0, ()->
@@ -55,10 +56,18 @@ public class NavigationStage implements Initializable {
             }
         });
 
-        btn_back.setOnMouseClicked(e-> MyAnimations.move(nav_pane, 0.3, 0, -300, null));
+        btn_nav_menu.setOnMouseClicked(e-> {
 
-        btn_nav_menu.setOnMouseClicked(e-> MyAnimations.move(nav_pane, 0.3, -300, 0, ()->
-                MyAnimations.shake(nav_pane, 0.17, -10, 0, 5, this::animateNavBar)));
+            if(isOpen){
+                isOpen=false;
+                 MyAnimations.move(nav_pane, 0.3, -300, 0, () ->
+                    MyAnimations.shake(nav_pane, 0.17, -10, 0, 5, this::animateNavBar));
+            }else {
+                MyAnimations.move(nav_pane, 0.3, 0, -300, null);
+                isOpen = true;
+            }
+
+        });
 
         setOnMouseEnteredExited(nav_btn_dash_board, hover_dash_board);
         setOnMouseEnteredExited(nav_btn_take_admission, hover_take_admission);
@@ -84,6 +93,49 @@ public class NavigationStage implements Initializable {
         nav_btn_setting.setOnMouseClicked(e->
                 setChildInBorderPane(4, "/setting/setting.fxml"));
 
+        nav_btn_signOut.setOnMouseClicked(e->
+                MyAlert.confirmAlert(getClass(), "Are you sure u wanna signOut?",()->{
+
+                    Node node = (Node) e.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    try {
+
+                        Parent root = FXMLLoader.load(getClass().getResource("/splash_login/login.fxml"));
+                        Scene scene = new Scene(root);
+                        scene.setFill(Color.TRANSPARENT);
+                        Stage loginStage = new Stage();
+                        loginStage.setScene(scene);
+                        loginStage.initStyle(StageStyle.TRANSPARENT);
+                        loginStage.show();
+
+                    } catch (Exception ex) {
+                        MyAlert.errorAlert(ex);
+                    }
+
+                }));
+
+        setSocialIconHover(img_github, "github");
+        setSocialIconHover(img_linked_in, "linked_in");
+        setSocialIconHover(img_stack, "stack");
+        setSocialIconHover(img_portfolio, "web");
+
+        img_github.setOnMouseClicked(e->launchUrl("https://github.com/Abdul-Moqueet"));
+        img_linked_in.setOnMouseClicked(e->launchUrl("https://www.linkedin.com/in/abdul-moqueet"));
+        img_stack.setOnMouseClicked(e->launchUrl("https://stackoverflow.com/users/6912209/abdul-moqueet"));
+        img_portfolio.setOnMouseClicked(e->launchUrl("https://abdul-moqueet.github.io"));
+
+    }
+
+
+    private void launchUrl(String url){
+
+        try {
+            Desktop.getDesktop().browse(new URL(url).toURI());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void setChildInBorderPane(int i, String fxml){
@@ -98,6 +150,16 @@ public class NavigationStage implements Initializable {
             MyAlert.errorAlert(e);
         }
         activeNav();
+
+    }
+
+    private void setSocialIconHover(ImageView imageView, String name){
+
+        Image hoverImg = new Image(getClass().getResourceAsStream(name+"_f.png"));
+        Image unHoverImg = new Image(getClass().getResourceAsStream(name+".png"));
+
+        imageView.setOnMouseEntered(e->imageView.setImage(hoverImg));
+        imageView.setOnMouseExited(e->imageView.setImage(unHoverImg));
 
     }
 
@@ -137,53 +199,28 @@ public class NavigationStage implements Initializable {
         switch (selected){
 
             case 0:
-                hover_dash_board.setStyle("-fx-background-color: #1dcc49");
+                hover_dash_board.setStyle("-fx-background-color: #1dcc63");
                 break;
 
             case 1:
-                hover_take_admission.setStyle("-fx-background-color: #1dcc49");
+                hover_take_admission.setStyle("-fx-background-color: #1DCC63");
                 break;
 
             case 2:
-                hover_student_info.setStyle("-fx-background-color: #1dcc49");
+                hover_student_info.setStyle("-fx-background-color: #1DCC63");
                 break;
 
             case 3:
-                hover_payment.setStyle("-fx-background-color: #1dcc49");
+                hover_payment.setStyle("-fx-background-color: #1DCC63");
                 break;
 
             case 4:
-                hover_settings.setStyle("-fx-background-color: #1dcc49");
+                hover_settings.setStyle("-fx-background-color: #1DCC63");
                 break;
 
             case 5:
-                hover_signOut.setStyle("-fx-background-color: #1dcc49");
+                hover_signOut.setStyle("-fx-background-color: #1DCC63");
                 break;
         }
-
     }
-
-    private void navBgImgAnimation() {
-
-        String[] bg = new String[6];
-
-        for (int i = 0; i < 6; i++)
-            bg[i] = "nav_bg_" + i + ".jpg";
-
-        timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-
-            timeline.play();
-
-            if (i >= 6) i = 0;
-
-            MyAnimations.fade(nav_bg_img, 1, 1, 0, () -> {
-                nav_bg_img.setImage(new Image(getClass().getResourceAsStream(bg[i++])));
-                MyAnimations.fade(nav_bg_img, 1, 0, 1, () -> timeline.play());
-            });
-
-        }), new KeyFrame(Duration.seconds(5)));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
 }

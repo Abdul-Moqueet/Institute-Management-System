@@ -13,10 +13,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="main_anchor" prefHeight="710.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="payment_info.PaymentInfo">
+<AnchorPane fx:id="main_anchor" prefHeight="710.0" prefWidth="1066.0" stylesheets="@../dash_board/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="payment_info.PaymentInfo">
     <children>
-        <AnchorPane prefHeight="710.0" prefWidth="1066.0" styleClass="anchor" stylesheets="@style.css">
+        <AnchorPane fx:id="background" prefHeight="710.0" prefWidth="1066.0">
             <children>
                 <Pane fx:id="main_pane" layoutX="24.0" layoutY="59.0" prefHeight="630.0" prefWidth="1019.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                     <effect>
@@ -33,8 +34,14 @@
                         <TableColumn fx:id="dues" prefWidth="55.0" resizable="false" text="Dues" />
                         <TableColumn fx:id="paid" prefWidth="55.0" resizable="false" text="Paid" />
                         <TableColumn fx:id="pay_date" prefWidth="87.0" resizable="false" text="Pay Date" />
-                        <TableColumn fx:id="doa" prefWidth="87.0" resizable="false" text="DOA" />
+                        <TableColumn fx:id="doa" prefWidth="96.0" resizable="false" text="DOA" />
                             </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <effect>
+                        <DropShadow color="#00000066" />
+                     </effect>
                         </TableView>
                         <Pane layoutX="784.0" layoutY="79.0" prefHeight="538.0" prefWidth="225.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                             <children>
@@ -84,13 +91,13 @@
             </children>
         </AnchorPane>
         <Pane prefHeight="35.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
-            <children>
-                <Label layoutX="456.0" layoutY="-1.0" text="Payment Info" textFill="WHITE">
-                    <font>
-                        <Font name="Courgette Regular" size="26.0" />
-                    </font>
-                </Label>
-            </children>
+         <children>
+            <Text fill="WHITE" layoutX="461.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Info">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Text>
+         </children>
         </Pane>
     </children>
 </AnchorPane>

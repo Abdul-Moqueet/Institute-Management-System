@@ -123,6 +123,7 @@ public class Login implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/navigation_stage/navigation_stage.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setTitle("Institute Management System [By: Abdul Moqueet]");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setMaximized(true);

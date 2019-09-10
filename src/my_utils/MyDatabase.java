@@ -6,6 +6,8 @@ import my_alert.MyAlert;
 import take_admission.StudentModal;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyDatabase {
 
@@ -17,7 +19,7 @@ public class MyDatabase {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:My_Database.db");
 
-            new Thread(()->{
+            new Thread(() -> {
 
                 try {
                     Thread.sleep(1000);
@@ -150,6 +152,91 @@ public class MyDatabase {
         }
 
         return false;
+    }
+
+    public static boolean updateCredentials(String newPassword) {
+
+        try {
+
+            PreparedStatement pr = connection.prepareStatement("update credentials set password = ?");
+            pr.setString(1, newPassword);
+            pr.executeUpdate();
+            return true;
+
+        } catch (Exception e) {
+            MyAlert.errorAlert(e);
+        }
+        return false;
+    }
+
+    public static ArrayList<String> getCredentials() {
+
+        ArrayList<String> credentials = new ArrayList<>();
+
+        try {
+            PreparedStatement pr = connection.prepareStatement("select * from credentials");
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                credentials.add(rs.getString(1));
+                credentials.add(rs.getString(2));
+            }
+        } catch (Exception e) {
+            MyAlert.errorAlert(e);
+        }
+        return credentials;
+    }
+
+    public static HashMap<String, Integer> getChartDataMap() {
+
+        HashMap<String, Integer> chartDataMap = new HashMap<>();
+
+        int boys = 0, girls = 0, paid = 0, dues = 0, boysPaid = 0, girlsPaid = 0, boysDue = 0, girlsDue = 0;
+
+        try {
+
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select gender, dues from student");
+
+            while (rs.next()) {
+                if (rs.getString(1).equals("Male")) {
+                    boys++;
+
+                    if (rs.getInt(2) == 0)
+                        boysPaid++;
+                    else
+                        boysDue++;
+
+                } else {
+                    girls++;
+
+                    if (rs.getInt(2) == 0)
+                        girlsPaid++;
+                    else
+                        girlsDue++;
+
+                }
+
+                if(rs.getInt(2) == 0)
+                    paid++;
+                else
+                    dues++;
+            }
+
+        } catch (Exception e) {
+            MyAlert.errorAlert(e);
+        }
+
+        chartDataMap.put("boys", boys);
+        chartDataMap.put("girls", girls);
+        chartDataMap.put("paid", paid);
+        chartDataMap.put("dues", dues);
+        chartDataMap.put("boysPaid", boysPaid);
+        chartDataMap.put("boysDues", boysDue);
+        chartDataMap.put("girlsPaid", girlsPaid);
+        chartDataMap.put("girlsDues", girlsDue);
+
+
+        return chartDataMap;
     }
 
 }

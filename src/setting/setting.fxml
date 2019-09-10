@@ -7,17 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="setting_pane" prefHeight="710.0" prefWidth="1066.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setting.Setting">
+<AnchorPane fx:id="background" prefHeight="710.0" prefWidth="1066.0" stylesheets="@../dash_board/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setting.Setting">
     <children>
         <Pane prefHeight="35.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
-            <children>
-                <Label layoutX="433.0" layoutY="-2.0" text="Change Password" textFill="WHITE">
-                    <font>
-                        <Font name="Courgette Regular" size="26.0" />
-                    </font>
-                </Label>
-            </children>
+         <children>
+            <Text fill="WHITE" layoutX="494.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Text>
+         </children>
         </Pane>
       <Pane fx:id="pane" layoutX="168.0" layoutY="162.0" prefHeight="387.0" prefWidth="730.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <effect>
@@ -42,7 +43,7 @@
                   <Label fx:id="lb_confirm_password_error" layoutX="111.0" layoutY="29.0" opacity="0.0" text="Can't be empty" textFill="RED" />
                </children>
             </Pane>
-            <JFXButton fx:id="btn_save_chnages" buttonType="RAISED" layoutX="375.0" layoutY="310.0" style="-fx-background-color: #8B22CC;" text="Save Changes" textFill="WHITE" />
+            <JFXButton fx:id="btn_save_change" buttonType="RAISED" layoutX="375.0" layoutY="310.0" style="-fx-background-color: #8B22CC;" text="Save Changes" textFill="WHITE" />
          </children>
       </Pane>
     </children>

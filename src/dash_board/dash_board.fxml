@@ -1,23 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="710.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dash_board.DashBoard">
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="710.0" prefWidth="1066.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dash_board.DashBoard">
    <children>
-      <Pane prefHeight="35.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
-         <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="1066.0" text="Dash Board" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Courgette Regular" size="22.0" />
-               </font>
-            </Label>
-         </children>
+      <Pane fx:id="background" prefHeight="710.0" prefWidth="1066.0" />
+      <Pane prefHeight="60.0" prefWidth="1066.0" style="-fx-background-color: #8b22cc;">
          <rotationAxis>
             <Point3D />
          </rotationAxis>
+         <children>
+            <Text fill="WHITE" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD" textAlignment="CENTER" wrappingWidth="1066.0">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="pane" layoutX="52.0" layoutY="115.0" prefWidth="947.0">
+         <children>
+            <PieChart fx:id="pie_Chat" layoutX="481.0" layoutY="138.0" prefHeight="389.0" prefWidth="466.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <effect>
+                  <DropShadow color="#00000080" />
+               </effect>
+            </PieChart>
+            <Pane fx:id="total_girls_pane" layoutX="737.0" layoutY="17.0" prefHeight="85.0" prefWidth="210.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <effect>
+                  <DropShadow color="#00000080" />
+               </effect>
+               <children>
+                  <Text fx:id="t_girls" fill="#8b22cc" layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="500">
+                     <font>
+                        <Font name="Open Sans Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="7.0" layoutY="63.0" text="Total No. of Girls" textFill="#8b22cc">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <BarChart fx:id="barChart" barGap="10.0" categoryGap="20.0" layoutX="6.0" layoutY="13.0" minHeight="200.0" prefHeight="509.0" prefWidth="448.0" style="-fx-background-color: white; -fx-background-radius: 10;" title="Boys vs Girls Payment Stats">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+               <effect>
+                  <DropShadow color="#00000080" />
+               </effect>
+            </BarChart>
+            <Pane fx:id="total_boys_pane" layoutX="481.0" layoutY="17.0" prefHeight="85.0" prefWidth="210.0" style="-fx-background-color: white; -fx-background-radius: 15;">
+               <effect>
+                  <DropShadow color="#000000b2" />
+               </effect>
+               <children>
+                  <Text fx:id="t_boys" fill="#8b22cc" layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="500">
+                     <font>
+                        <Font name="Open Sans Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="8.0" layoutY="63.0" text="Total No. of Boys" textFill="#8b22cc">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
       </Pane>
    </children>
 </AnchorPane>

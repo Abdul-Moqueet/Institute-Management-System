@@ -36,7 +36,7 @@ import static my_utils.MyUtils.*;
 public class TakeAdmission implements Initializable {
 
     @FXML
-    private Pane pane, pane_name, pane_phone_no, pane_f_name, pane_address, mainPane;
+    private Pane take_admission_pane, pane_name, pane_phone_no, pane_f_name, pane_address, mainPane;
 
     @FXML
     private ImageView btn_save, btn_clear_all, btn_refresh, img_v_pic;
@@ -60,9 +60,9 @@ public class TakeAdmission implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        pane.setTranslateX(1066);
+        take_admission_pane.setTranslateX(1066);
 
-        MyAnimations.delayUiThread(0.2, () -> MyAnimations.move(pane, 0.5, 1066, 0, null));
+        MyAnimations.delayUiThread(0.2, () -> MyAnimations.move(take_admission_pane, 0.5, 1066, 0, null));
 
         Tooltip.install(btn_save, new Tooltip("Save"));
         Tooltip.install(btn_clear_all, new Tooltip("Clear All"));
@@ -148,7 +148,7 @@ public class TakeAdmission implements Initializable {
     }
 
     private void refresh() {
-        MyAnimations.shake(pane, 0.08, 0, 10, 6, () -> {
+        MyAnimations.shake(take_admission_pane, 0.08, 0, 10, 6, () -> {
             clearAll();
             picName = "default_avatar.png";
             img_v_pic.setImage(new Image(getClass().getResourceAsStream("default_avatar.png")));
@@ -193,9 +193,9 @@ public class TakeAdmission implements Initializable {
                 Path from = Paths.get(selectedFile.toURI());
                 Path to = Paths.get(picName);
                 try {
-                    Files.copy(from, to.resolve(from), StandardCopyOption.REPLACE_EXISTING);
-                }catch (Exception ex){
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+                }catch (Exception ex){
+                    Files.copy(from, to.resolve(from), StandardCopyOption.REPLACE_EXISTING);
                 }
 
                 return true;
