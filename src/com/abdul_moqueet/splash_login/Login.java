@@ -1,5 +1,6 @@
 package com.abdul_moqueet.splash_login;
 
+import com.abdul_moqueet.my_utils.MyUtils;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,6 +28,7 @@ import com.abdul_moqueet.my_utils.MyDatabase;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Login implements Initializable {
@@ -103,45 +105,47 @@ public class Login implements Initializable {
 
     private void signIn(ActionEvent e) {
 
-//        if(MyUtils.isNotEmpty(tf_user, invalid_user, pane_user) && MyUtils.isNotEmpty(tf_pass, invalid_pass, pane_pass)){
-//
-//            if(!(tf_user.getText().equalsIgnoreCase("moqueet"))){
-//                invalid_user.setText("Invalid username");
-//                invalid_user.setStyle("-fx-opacity: 1");
-//                MyAnimations.shake(pane_user, 0.08, 10, 6);
-//                return;
-//            }
-//
-//            invalid_user.setStyle("-fx-opacity: 0");
-//
-//            if(!(tf_pass.getText().equals("moqueet777"))){
-//                invalid_pass.setText("Invalid password");
-//                invalid_pass.setStyle("-fx-opacity: 1");
-//                MyAnimations.shake(pane_pass, 0.08, 10, 6);
-//                return;
-//            }
-//
-//            invalid_pass.setStyle("-fx-opacity: 0");
+        if (MyUtils.isNotEmpty(tf_user, invalid_user, pane_user) && MyUtils.isNotEmpty(tf_pass, invalid_pass, pane_pass)) {
 
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/abdul_moqueet/navigation_stage/navigation_stage.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Institute Management System [By: Abdul Moqueet]");
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setMaximized(true);
-            stage.show();
+            ArrayList<String> credentials = MyDatabase.getCredentials();
 
-            Node Node = (Node) e.getSource();
-            Stage currentStage = (Stage) Node.getScene().getWindow();
-            currentStage.close();
+            if (!(tf_user.getText().equalsIgnoreCase(credentials.get(0)))) {
+                invalid_user.setText("Invalid username");
+                invalid_user.setStyle("-fx-opacity: 1");
+                MyAnimations.shake(pane_user, 0.08, 0, 10, 6, null);
+                return;
+            }
 
-        } catch (Exception ex) {
-            MyAlert.errorAlert(ex);
-            ex.printStackTrace();
+            invalid_user.setStyle("-fx-opacity: 0");
+
+            if (!(tf_pass.getText().equals(credentials.get(1)))) {
+                invalid_pass.setText("Invalid password");
+                invalid_pass.setStyle("-fx-opacity: 1");
+                MyAnimations.shake(pane_pass, 0.08, 0, 10, 6, null);
+                return;
+            }
+
+            invalid_pass.setStyle("-fx-opacity: 0");
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/abdul_moqueet/navigation_stage/navigation_stage.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Institute Management System [By: Abdul Moqueet]");
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setMaximized(true);
+                stage.show();
+
+                Node Node = (Node) e.getSource();
+                Stage currentStage = (Stage) Node.getScene().getWindow();
+                currentStage.close();
+
+            } catch (Exception ex) {
+                MyAlert.errorAlert(ex);
+                ex.printStackTrace();
+            }
+
         }
-
     }
-//    }
 }
