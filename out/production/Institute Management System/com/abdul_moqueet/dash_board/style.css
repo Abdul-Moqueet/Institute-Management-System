@@ -1,0 +1,60 @@
+#total_boys_pane{
+    -fx-background-image: url("boys_count_bg.png");
+}
+
+#total_girls_pane{
+    -fx-background-image: url("girls_count_bg.png");
+}
+
+#dashboardPieChart,#studentPane,#studentPaymentPane,#studentSearchPane{
+    -fx-background-color: #8b22cc;
+    -fx-background-radius: 20px;
+}
+
+#about_pane{
+    -fx-background-image: url("../navigation_stage/aboutImage.jpg");
+}
+
+.table-view {
+    -fx-background-color: #fff;
+}
+
+#background{
+    -fx-background-image: url("bg.jpg");
+}
+
+#take_admission_pane{
+    -fx-background-image: url("pane_bg.png");
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color: #8b22cc;
+    -fx-size: 36px;
+
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+
+.table-view .table-cell{
+    -fx-text-fill: #000;
+    -fx-border-width: 1px;
+}
+
+.table-row-cell{
+    -fx-background-color: #fff;
+}
+
+
+.table-row-cell:selected .table-cell {
+    -fx-background-color: #8B22CC;
+    -fx-text-background-color: #8B22CC;
+    -fx-border-color: #8B22CC;
+    -fx-text-fill: white;
+}
